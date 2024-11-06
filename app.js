@@ -1,17 +1,29 @@
 const express = require('express');
 const { BigQuery } = require('@google-cloud/bigquery');
 const cors = require('cors');  // Asegúrate de importar cors
+const { GoogleAuth } = require('google-auth-library');
 
 const app = express();
-const bigquery = new BigQuery();
 
-//process.env.GOOGLE_APPLICATION_CREDENTIALS = "/app/credentials/sri-f6178b26dbbf.json";
+
 
 app.use(cors({
   origin: 'http://localhost:5173',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Obtén las credenciales de la cuenta de servicio desde una variable de entorno
+const serviceAccountInfo = JSON.parse(process.env.SRI);
+
+// Inicializa las credenciales usando `GoogleAuth`
+const auth = new GoogleAuth({
+  credentials: serviceAccountInfo,
+  scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+});
+
+// Crea el cliente de BigQuery usando las credenciales inicializadas
+const bigquery = new BigQuery({ auth });
 
 
 // Ruta para obtener la información de los usuarios únicos
