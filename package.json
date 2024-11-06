@@ -1,0 +1,14 @@
+{
+  "name": "sri-back",
+  "version": "1.0.0",
+  "description": "Backend API for SRI-BACK",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "@google-cloud/bigquery": "^7.9.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.1"
+  }
+}
