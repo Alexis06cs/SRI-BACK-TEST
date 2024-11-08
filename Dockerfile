@@ -13,10 +13,10 @@ RUN npm install
 # Copiar el resto del código de la aplicación
 COPY . .
 
-# Establecer la variable de entorno para el puerto
-ENV PORT 8080
+# (Opcional) Eliminar o comentar la siguiente línea
+# ENV PORT 8080
 
-# Exponer el puerto que usará la aplicación
+# Exponer el puerto que usará la aplicación (puedes mantenerlo si tu aplicación usa 8080 localmente)
 EXPOSE 8080
 
 # Comando para iniciar la aplicación
